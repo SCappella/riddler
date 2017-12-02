@@ -90,6 +90,15 @@ class Lock:
         self.combo = combo.combo
         self.state = initial_state.state
 
+    @classmethod
+    def enumerate(cls):
+        """
+        Enumerate all possible locks
+        """
+        for combo in Combo.enumerate():
+            for state in State.enumerate():
+                yield cls(combo, state)
+
     def attempt(self, guess):
         """
         Make a guess
@@ -120,30 +129,29 @@ class Lock:
 def search_for_solution():
     """
     Find the shortest series of guesses that unlocks all possible locks
-    
-    This uses breadth-first search. It works, but A* would probably be faster.
-    This will print the best series of guesses it's found so far, along with how many locks it unlocks.
     """
-    strategies = {()}
+    # making this ordered allows us to ensure that we get the lexographically
+    # minimal solution
+    strategies = [()]
     success = False
     max_unlocked = (-1, None)
     while not success:
-        new_strategies = set()
+        new_strategies = []
         for strategy in strategies:
             for guess in Guess.enumerate():
                 new_strategy = strategy + (guess,)
-                new_strategies.add(new_strategy)
-                if all(Lock(combo, state).series_works(new_strategy)
-                       for state in State.enumerate()
-                       for combo in Combo.enumerate()):
-                    success = True
-                    print("That's all the locks")
-                num_unlocked = len([Lock(combo, state)
-                                    for state in State.enumerate()
-                                    for combo in Combo.enumerate()
-                                    if Lock(combo, state).series_works(
-                                        new_strategy)])
+                new_strategies.append(new_strategy)
+                num_unlocked = len([lock for lock in Lock.enumerate()
+                                    if lock.series_works(new_strategy)])
                 if num_unlocked > max_unlocked[0]:
                     max_unlocked = (num_unlocked, new_strategy)
                     print(max_unlocked)
+                if all(lock.series_works(new_strategy)
+                       for lock in Lock.enumerate()):
+                    success = True
+                    break
+            if success:
+                break
+        if success:
+            break
         strategies = new_strategies
