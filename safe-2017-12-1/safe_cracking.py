@@ -143,6 +143,8 @@ def search_for_solution():
                 new_strategies.append(new_strategy)
                 num_unlocked = len([lock for lock in Lock.enumerate()
                                     if lock.series_works(new_strategy)])
+                if num_unlocked >= max_unlocked[0]:
+                    new_strategies.append(new_strategy)
                 if num_unlocked > max_unlocked[0]:
                     max_unlocked = (num_unlocked, new_strategy)
                     print(max_unlocked)
