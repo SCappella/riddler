@@ -1,0 +1,10 @@
+[package]
+name = "create_csv_proportion"
+version = "0.1.0"
+authors = ["zeta12ti <zeta12ti@users.noreply.github.com>"]
+
+[profile.release]
+lto = true
+
+[dependencies]
+expected_value = {path = "../expected_value"}

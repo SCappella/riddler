@@ -1,0 +1,10 @@
+[package]
+name = "approx_expected_value"
+version = "0.1.0"
+authors = ["zeta12ti <zeta12ti@users.noreply.github.com>"]
+
+[profile.release]
+lto = true
+
+[dependencies]
+expected_value = {path = "../expected_value"}

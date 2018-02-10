@@ -1,0 +1,11 @@
+[package]
+name = "riddler"
+version = "0.1.0"
+authors = ["zeta12ti <zeta12ti@users.noreply.github.com>"]
+readme = "README.md"
+license = "MIT"
+
+[profile.release]
+lto = true
+
+[dependencies]
