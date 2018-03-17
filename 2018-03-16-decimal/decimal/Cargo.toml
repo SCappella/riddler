@@ -1,0 +1,11 @@
+[package]
+name = "decimal"
+version = "0.1.0"
+authors = ["SCappella <>"]
+
+[dependencies]
+num-traits = "0.2"
+num-integer = "0.1"
+
+[profile.release]
+lto = true
