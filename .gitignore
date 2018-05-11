@@ -2,3 +2,4 @@
 /2018-03-16-decimal/decimal/target/*
 **/*.rs.bk
 **/Cargo.lock
+**/.idea/*

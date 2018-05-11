@@ -1,0 +1,6 @@
+[package]
+name = "swing"
+version = "0.1.0"
+authors = ["SCappella <>"]
+
+[dependencies]
