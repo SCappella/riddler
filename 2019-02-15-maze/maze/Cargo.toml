@@ -1,0 +1,7 @@
+[package]
+name = "maze"
+version = "0.1.0"
+authors = ["zeta12ti <>"]
+edition = "2018"
+
+[dependencies]
