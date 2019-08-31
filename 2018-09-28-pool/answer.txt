@@ -1,0 +1,17 @@
+In particular, one such formation is
+
+    0
+   0 1
+  1 0 0
+ 8 1 1 0
+1 0 0 1 1
+
+where 0 is solid, 1 is stripe and 8 is the eight ball. Hopefully this format is readable to you. It looks better in a monospaced font.
+
+This was essentially found with brute force. I thought of a formation as a list of positions of stripes, a list of positions of solids, and the position of the eight ball (each position is a number 1-15). I then encoded each of the possible transformations. Note that swapping two stripes or two solids makes no difference.
+
+Since these operations are symmetric, it suffices to see which formations get reached last if every operation is applied to every formation that's been reached so far. I started with the final position and applied every operation to get a new set of formations. Repeating 6 times nets all 51,480 (=15!/(1!*7!*7!)) formations.
+
+To find the extra credit answer, I looped through every possible starting position and found the distance to the furthest formation. The problem was just small enough that I could solve this without much optimization. The longest path started at
+
+
